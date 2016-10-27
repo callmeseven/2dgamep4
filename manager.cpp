@@ -151,11 +151,49 @@ void Manager::play() {
     while ( SDL_PollEvent(&event) ) {
       Uint8 *keystate = SDL_GetKeyState(NULL);
       if (event.type ==  SDL_QUIT) { done = true; break; }
+      if(event.type == SDL_KEYUP)
+        {
+            sprites[0]->velocityX(0);
+            sprites[0]->velocityY(0);
+        }
+
       if(event.type == SDL_KEYDOWN) {
         if (keystate[SDLK_ESCAPE] || keystate[SDLK_q]) {
           done = true;
           break;
         }
+        //----------------
+        //
+        //player sprite control
+        //
+        //player sprite ----- sprites[0]
+        //----------------
+        
+        if( keystate[SDLK_a] )
+        {
+            sprites[0]->velocityX(-100);
+        }
+        if( keystate[SDLK_s] )
+        {
+            sprites[0]->velocityY(100);
+        }
+        if( keystate[SDLK_w] )
+        {
+            sprites[0]->velocityY(-100);
+        }
+        if( keystate[SDLK_d] )
+        {
+            sprites[0]->velocityX(100);
+        }
+        if( keystate[SDLK_SPACE] )
+        {
+        }
+        
+        //-----------------------
+        //
+        //end player sprite control
+        //
+        //------------------------
         if ( keystate[SDLK_F1] ) {
             if(hud_on != true)
             {
@@ -168,9 +206,6 @@ void Manager::play() {
             }
         }
 
-        if ( keystate[SDLK_s] ) {
-          clock.toggleSloMo();
-        }
         if ( keystate[SDLK_p] ) {
           if ( clock.isPaused() ) clock.unpause();
           else clock.pause();
