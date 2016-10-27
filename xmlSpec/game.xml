@@ -70,8 +70,8 @@
   <startLoc x="120" y="240"/>
   <frames>4</frames>
   <frameInterval>200</frameInterval>
-  <speedX>-200</speedX>
-  <speedY>50</speedY>
+  <speedX>0</speedX>
+  <speedY>0</speedY>
   <transparency>true</transparency>
 </pacman>
 

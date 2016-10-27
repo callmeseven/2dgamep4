@@ -5,6 +5,7 @@
 #include "world.h"
 #include "viewport.h"
 #include "float.h"
+#include "player.h"
 
 class Manager {
 public:

@@ -43,7 +43,7 @@ Manager::Manager() :
   }
   SDL_WM_SetCaption(title.c_str(), NULL);
   atexit(SDL_Quit);
-  sprites.push_back( new MultiSprite("pacman") );
+  sprites.push_back( new Player("pacman") );
   //sprites.push_back( new MultiSprite("bluepac1") );
   //sprites.push_back( new RotateSprite("coologo") );
   //sprites.push_back( new MultiSprite("bluepac2") );
@@ -51,7 +51,7 @@ Manager::Manager() :
   //sprites.push_back( new Sprite("sillyman2") );
   //sprites.push_back( new Sprite("sillyman3") );
   //sprites.push_back( new Sprite("greenorb") );
-  viewport.setObjectToTrack(sprites[currentSprite]);
+  viewport.setObjectToTrack(sprites[0]);
 }
 
 void drawBackground(SDL_Surface* screen)
