@@ -1,0 +1,24 @@
+Name:Chunpeng Shao
+Clemson Email Address:chunpes@clemson.edu
+Course number: 6160
+
+Project no:3
+Project due date: Oct.7
+
+Project description: 
+Polymorphism in Action
+Use vectors/polymorphisms and etc to finish all 8 tasks.
+
+Extra Contribution:
+All sprites hand drawn.
+Three 2-way-multiframe sprite with detect by eithor X velocity or Y velocity.
+
+Problems with this project:
+parallex scrolling still not fully under control.
+
+---------------------------------
+NOTE:
+1. All 3 backgrounds are moving in sight.
+2. Use "T" key to change between sprites would understand the animation more clear.
+3. 2 pacman-ghosts are 6-frame sprite.
+4. pacman is 4-frame sprite.

@@ -1,0 +1,140 @@
+<?xml version = "1.0"?>
+<GameData>
+<!-- screenTitle is also used to identify you and your animation. 
+     So make sure to include your name as part of the screenTitle -->
+<screenTitle>Chunpeng Shao(Ray)'s Hand-Draw Pacman Animation</screenTitle>
+<maxStringSize>50</maxStringSize>
+
+<FPS_MAX>200</FPS_MAX>
+
+<frameCap>60</frameCap>
+<framesAreCapped>true</framesAreCapped>
+
+<frameMax>200</frameMax>
+<username>chunpes</username>
+
+<WORLD_WIDTH>4000</WORLD_WIDTH>
+<WORLD_HEIGHT>480</WORLD_HEIGHT>
+
+<view>
+  <width>854</width>
+  <height>480</height>
+</view>
+
+<world>
+  <width>4000</width>
+  <height>960</height>
+</world>
+
+<back>
+  <file>images/123.png</file>
+  <red>193</red>
+  <green>205</green>
+  <blue>205</blue>
+  <factor>1</factor>
+  <transparency>false</transparency>
+</back>
+
+<tree>
+  <file>images/tree.png</file>
+  <red>193</red>
+  <green>205</green>
+  <blue>205</blue>
+  <factor>2</factor>
+  <transparency>false</transparency>
+</tree>
+
+
+<mount>
+  <file>images/mount.png</file>
+  <red>193</red>
+  <green>205</green>
+  <blue>205</blue>
+  <factor>1</factor>
+  <transparency>false</transparency>
+</mount>
+
+
+
+<font name="font">
+  <file>font/dyslexic-bold.otf</file>
+  <size>16</size>
+  <red>200</red>
+  <green>200</green>
+  <blue>200</blue>
+  <unused>0</unused>
+</font>
+
+<pacman>
+  <file>images/total.png</file>
+  <startLoc x="120" y="240"/>
+  <frames>4</frames>
+  <frameInterval>200</frameInterval>
+  <speedX>-200</speedX>
+  <speedY>50</speedY>
+  <transparency>true</transparency>
+</pacman>
+
+<sillyman1>
+  <file>images/b1.png</file>
+  <startLoc x="0" y="300"/>
+  <speedX>275</speedX>
+  <speedY>0</speedY>
+  <transparency>true</transparency>
+</sillyman1>
+
+<sillyman2>
+  <file>images/b2.png</file>
+  <startLoc x="0" y="150"/>
+  <speedX>-300</speedX>
+  <speedY>0</speedY>
+  <transparency>true</transparency>
+</sillyman2>
+
+<sillyman3>
+  <file>images/b3.png</file>
+  <startLoc x="0" y="450"/>
+  <speedX>-250</speedX>
+  <speedY>0</speedY>
+  <transparency>true</transparency>
+</sillyman3>
+
+<greenorb>
+  <file>images/greenball.bmp</file>
+  <startLoc x="320" y="240"/>
+  <speedX>175</speedX>
+  <speedY>175</speedY>
+  <transparency>true</transparency>
+</greenorb>
+
+<bluepac1>
+  <file>images/a1.png</file>
+  <startLoc x="400" y="100"/>
+  <frames>6</frames>
+  <frameInterval>200</frameInterval>
+  <speedX>100</speedX>
+  <speedY>200</speedY>
+  <transparency>true</transparency>
+</bluepac1>
+
+<bluepac2>
+  <file>images/a1.png</file>
+  <startLoc x="900" y="0"/>
+  <frames>6</frames>
+  <frameInterval>200</frameInterval>
+  <speedX>100</speedX>
+  <speedY>-200</speedY>
+  <transparency>true</transparency>
+</bluepac2>
+
+<coologo>
+  <file>images/coologo.png</file>
+  <startLoc x="250" y="250"/>
+  <speedX>100</speedX>
+  <speedY>-100</speedY>
+  <transparency>true</transparency>
+</coologo>
+
+
+
+</GameData>
