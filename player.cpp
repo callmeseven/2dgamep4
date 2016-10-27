@@ -35,7 +35,7 @@ if ( abs( velocityX() ) < abs( velocityY() )){
   {
     if (timeSinceLastFrame > frameInterval) 
     {
-      currentFrame = (currentFrame+1) % (numberOfFrames / 2 );
+      currentFrame = (currentFrame+1) % (numberOfFrames / 2) +(numberOfFrames / 2);
       timeSinceLastFrame = 0;
     }
   }
