@@ -63,12 +63,12 @@ void drawBackground(SDL_Surface* screen)
 
 void Manager::display_hud(SDL_Surface* screen, const Uint32 RED, int fps)
 {
-    SDL_Rect rect = {10,10,170,160};
+    SDL_Rect rect = {5,10,170,160};
     SDL_FillRect(screen, &rect, SDL_MapRGB(screen->format, 255,255,255));
-    SDL_Rect dest = {10, 10, 170,160};
+    SDL_Rect dest = {5, 10, 170,160};
     SDL_BlitSurface(screen, &rect ,screen,&dest);
             Sint16 y1 = 10;
-            Sint16 x1 = 10, x2 = 180;
+            Sint16 x1 = 5, x2 = 175;
             // draw the top line
             Draw_AALine(screen, x1, y1, x2, y1, 2.0f, RED);
             
@@ -77,10 +77,14 @@ void Manager::display_hud(SDL_Surface* screen, const Uint32 RED, int fps)
             Draw_AALine(screen, x2, y1, x2, y1+160, 2.0f, RED);
 
             Draw_AALine(screen, x1, y1, x1, y1+160, 2.0f, RED);
-
   io.printMessageValueAt("Seconds: ", clock.getSeconds(), 10, 20);
   io.printMessageValueAt("fps: ", fps, 10, 40);
-  io.printMessageAt("Press T to switch sprites", 10, 60);
+  io.printMessageValueAt("X-pos:", int(sprites[0]->X()), 10, 60);
+  io.printMessageValueAt("Y-pos:", int(sprites[0]->Y()), 10, 80);
+ // io.printMessageAt("W: Move Up", 10, 80);
+  io.printMessageAt("A: Move Left", 10, 100);
+  io.printMessageAt("S: Move Down", 10, 120);
+  io.printMessageAt("D: Move Right", 10, 140);
   io.printMessageAt(title, 10, 450);
 }
 
@@ -144,24 +148,14 @@ void Manager::play() {
   bool done = false;
   bool hud_on = true;
   bool first_time_hud = true;
+  unsigned int blinkCD = 0;
+  bool blink_CD = false;
   const Uint32 RED = SDL_MapRGB(screen->format, 0xff, 0,0);
 
 
   while ( not done ) {
     while ( SDL_PollEvent(&event) ) {
       Uint8 *keystate = SDL_GetKeyState(NULL);
-      if (event.type ==  SDL_QUIT) { done = true; break; }
-      if(event.type == SDL_KEYUP)
-        {
-            sprites[0]->velocityX(0);
-            sprites[0]->velocityY(0);
-        }
-
-      if(event.type == SDL_KEYDOWN) {
-        if (keystate[SDLK_ESCAPE] || keystate[SDLK_q]) {
-          done = true;
-          break;
-        }
         //----------------
         //
         //player sprite control
@@ -185,11 +179,42 @@ void Manager::play() {
         {
             sprites[0]->velocityX(100);
         }
-        if( keystate[SDLK_SPACE] )
-        {
-        }
+        if( keystate[SDLK_a] && keystate[SDLK_d] )
+            sprites[0]->velocityX(0);
+        if( keystate[SDLK_w] && keystate[SDLK_s] )
+            sprites[0]->velocityY(0);
+
+        if( !keystate[SDLK_a] && !keystate[SDLK_d] )
+            sprites[0]->velocityX(0);
+        if( !keystate[SDLK_w] && !keystate[SDLK_s] )
+            sprites[0]->velocityY(0);
+        //-------------------------------------------
+    
         
+      if (event.type ==  SDL_QUIT) { done = true; break; }
+
+      if(event.type == SDL_KEYDOWN) {
+        if (keystate[SDLK_ESCAPE] || keystate[SDLK_q]) {
+          done = true;
+          break;
+        }
+                //space for 
+        //JumpFunction
+        //if( keystate[SDLK_SPACE] )
+        //{
+        //}
         //-----------------------
+        // Blink Function 
+        //-----------------------
+        if( SDL_GetTicks() - blinkCD > 3000 )
+        { blink_CD = false; }
+       if( keystate[SDLK_b] && !blink_CD) // blink key.
+        {   
+            sprites[0]->X( sprites[0]->X()+250 );
+            blink_CD = true;
+            blinkCD = SDL_GetTicks();
+        }
+
         //
         //end player sprite control
         //
