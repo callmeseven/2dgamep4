@@ -7,7 +7,6 @@ public:
   Player(const std::string&);
   Player(const Player&);
   virtual ~Player() { } 
-
   virtual void draw() const;
   virtual void update(Uint32 ticks);
   virtual const Frame* getFrame() const { 
@@ -15,7 +14,7 @@ public:
   }
 
 protected:
-  const std::vector<Frame *> frames;
+    const std::vector<Frame *> frames;
   int worldWidth;
   int worldHeight;
 

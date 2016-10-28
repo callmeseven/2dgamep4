@@ -189,7 +189,14 @@ void Manager::play() {
         if( !keystate[SDLK_w] && !keystate[SDLK_s] )
             sprites[0]->velocityY(0);
         //-------------------------------------------
-    
+      if(sprites[0]->velocityX() > 0)
+      {
+          sprites[0]->direct(true);
+      }
+      if(sprites[0]->velocityX() < 0)
+      {
+          sprites[0]->direct(false);
+      }
         
       if (event.type ==  SDL_QUIT) { done = true; break; }
 

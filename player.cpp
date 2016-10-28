@@ -7,49 +7,27 @@
 
 //FOR PACMAN----------------
 //------------------------------------
-void Player::advanceFrame(Uint32 ticks) {
-	timeSinceLastFrame += ticks;
-
-if (abs(velocityX())>abs(velocityY())){
-  if(velocityX()>0)
-  {
-  	if (timeSinceLastFrame > frameInterval) 
+void Player::advanceFrame(Uint32 ticks)
+{
+    timeSinceLastFrame += ticks;
+    if (direct())
     {
-      currentFrame = (currentFrame+1) % (numberOfFrames / 2 );
-  		timeSinceLastFrame = 0;
-  	}
-  }
-
-  if(velocityX()<0)
-  {
-      if (timeSinceLastFrame > frameInterval) 
-      {
-      currentFrame = (currentFrame+1) % (numberOfFrames / 2) +(numberOfFrames / 2);
-      timeSinceLastFrame = 0;
-      }
-  }
-}
-
-if ( abs( velocityX() ) < abs( velocityY() )){
-  if(velocityY()<0)
-  {
-    if (timeSinceLastFrame > frameInterval) 
-    {
-      currentFrame = (currentFrame+1) % (numberOfFrames / 2) +(numberOfFrames / 2);
-      timeSinceLastFrame = 0;
+        if( timeSinceLastFrame > frameInterval )
+        {
+            currentFrame = (currentFrame+1) % (numberOfFrames /2);
+            timeSinceLastFrame = 0;
+        }
     }
-  }
+    else if (!direct())
+    {
+        if( timeSinceLastFrame > frameInterval )
+        {
+            currentFrame = ((currentFrame+1) % (numberOfFrames /2)) + (numberOfFrames /2 );
+            timeSinceLastFrame = 0;
+        }
+    }
 
-  if(velocityY()>0)
-  {
-      if (timeSinceLastFrame > frameInterval) 
-      {
-      currentFrame = (currentFrame+1) % (numberOfFrames / 2) +(numberOfFrames / 2);
-      timeSinceLastFrame = 0;
-      }
-  }
 
-}
 }
 //-----------------------------------------------------------
 
@@ -76,6 +54,7 @@ Player::Player( const std::string& name) :
 { }
 Player::Player(const Player& s) :
   Drawable(s), 
+   // direct(s.direct),
   frames(s.frames),
   worldWidth( s.worldWidth ),
   worldHeight( s.worldHeight ),
