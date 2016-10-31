@@ -1,0 +1,13 @@
+#include <stdlib>
+#include <iostream>
+
+int main()
+{
+std::cout << rand() % 100 + 20 << std::endl;
+std::cout << rand() % 100 + 20 << std::endl;
+std::cout << rand() % 100 + 20 << std::endl;
+std::cout << rand() % 100 + 20 << std::endl;
+std::cout << rand() % 100 + 20 << std::endl;
+std::cout << rand() % 100 + 20 << std::endl;
+return 0;
+}

@@ -9,7 +9,9 @@ public:
   Sprite(const std::string&, const Vector2f& pos, const Vector2f& vel);
   Sprite(const std::string&, 
          const Vector2f& pos, const Vector2f& vel, const Frame*);
+  Sprite(const std::string&, const Vector2f& pos, const Vector2f& vel, double& zoom);
   Sprite(const Sprite& s);
+
   Sprite& operator=(const Sprite&);
   virtual ~Sprite() { } 
 

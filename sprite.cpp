@@ -1,15 +1,22 @@
 #include <cmath>
 #include "sprite.h"
 #include "gamedata.h"
+#include <cmath>
 #include "frameFactory.h"
 
 Sprite::Sprite(const std::string& name) :
   Drawable(name,
-           Vector2f(Gamedata::getInstance().getXmlInt(name+"/startLoc/x"), 
-                    Gamedata::getInstance().getXmlInt(name+"/startLoc/y")), 
-           Vector2f(Gamedata::getInstance().getXmlInt(name+"/speedX"), 
-                    Gamedata::getInstance().getXmlInt(name+"/speedY")) 
-           ),
+           Vector2f( ((rand()%900)-450), ((rand() % 900)-450)),
+               //Gamedata::getInstance().getXmlInt(name+"/startLoc/x"), 
+                    //Gamedata::getInstance().getXmlInt(name+"/startLoc/y")), 
+           Vector2f( ((rand()%500)-250), ((rand()%400)-200))
+               //Gamedata::getInstance().getXmlInt(name+"/speedX"), 
+                    //Gamedata::getInstance().getXmlInt(name+"/speedY"))
+           
+       ),
+
+
+
   frame( FrameFactory::getInstance().getFrame(name) ),
   frameWidth(frame->getWidth()),
   frameHeight(frame->getHeight()),
@@ -35,6 +42,15 @@ Sprite::Sprite(const string& n, const Vector2f& pos, const Vector2f& vel,
   worldWidth(Gamedata::getInstance().getXmlInt("WORLD_WIDTH")),
   worldHeight(Gamedata::getInstance().getXmlInt("WORLD_HEIGHT"))
 { }
+/*
+Sprite::Sprite(const std::string& n, const Vector2f& pos, const Vector2f& vel, double& zoom):
+    Drawable(n, pos, vel, zoom),
+    frame( FrameFactory::getInstance().getFrame(n) ),
+    frameWidth( frame->getWidth() ),
+    frameHeight( frame->getHeight() ),
+    worldWidth(Gamedata::getInstance().getXmlInt("WORLD_WIDTH") ),
+    worldHeight(Gamedata::getInstance().getXmlInt("WORLD_HEIGHT") )
+{ }*/
 
 Sprite::Sprite(const Sprite& s) :
   Drawable(s), 
@@ -54,7 +70,9 @@ Sprite& Sprite::operator=(const Sprite&)
 void Sprite::draw() const { 
   Uint32 x = static_cast<Uint32>(X());
   Uint32 y = static_cast<Uint32>(Y());
-  frame->draw(x, y); 
+  //double i =( sqrt((velocityX())*(velocityX())+(velocityY())*(velocityY())));
+ // getZoom(i);
+  frame->draw(x, y,getzoom()); 
 }
 
 int Sprite::getDistance(const Sprite *obj) const { 

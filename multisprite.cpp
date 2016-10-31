@@ -62,7 +62,7 @@ MultiSprite::MultiSprite( const std::string& name) :
                     Gamedata::getInstance().getXmlInt(name+"/startLoc/y")), 
            Vector2f(Gamedata::getInstance().getXmlInt(name+"/speedX"),
                     Gamedata::getInstance().getXmlInt(name+"/speedY"))
-           ),
+         ),
   frames( FrameFactory::getInstance().getFrames(name) ),
   worldWidth(Gamedata::getInstance().getXmlInt("WORLD_WIDTH")),
   worldHeight(Gamedata::getInstance().getXmlInt("WORLD_HEIGHT")),
@@ -91,7 +91,8 @@ MultiSprite::MultiSprite(const MultiSprite& s) :
 void MultiSprite::draw() const { 
   Uint32 x = static_cast<Uint32>(X());
   Uint32 y = static_cast<Uint32>(Y());
-  frames[currentFrame]->draw(x, y);
+  double i = (rand()%100 + 1)/20;
+  frames[currentFrame]->draw(x, y, i);
 }
 
 void MultiSprite::update(Uint32 ticks) { 

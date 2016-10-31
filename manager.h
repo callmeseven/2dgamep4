@@ -22,12 +22,14 @@ private:
 
   SDL_Surface * const screen;
   World world;
-//  Float tree;
+  Float tree;
   Float mount;
   Viewport& viewport;
 
   std::vector<Drawable*> sprites;
   int currentSprite;
+  
+  std::vector<Drawable*> ghosts;
 
   bool makeVideo;
   int frameCount;

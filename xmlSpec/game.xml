@@ -10,7 +10,7 @@
 <frameCap>60</frameCap>
 <framesAreCapped>true</framesAreCapped>
 
-<frameMax>200</frameMax>
+<frameMax>500</frameMax>
 <username>chunpes</username>
 
 <WORLD_WIDTH>4000</WORLD_WIDTH>
@@ -36,7 +36,7 @@
 </back>
 
 <tree>
-  <file>images/tree.png</file>
+  <file>images/mount.png</file>
   <red>193</red>
   <green>205</green>
   <blue>205</blue>
@@ -59,14 +59,14 @@
 <font name="font">
   <file>font/dyslexic-bold.otf</file>
   <size>16</size>
-  <red>200</red>
-  <green>200</green>
-  <blue>200</blue>
+  <red>255</red>
+  <green>0</green>
+  <blue>0</blue>
   <unused>0</unused>
 </font>
 
 <pacman>
-  <file>images/total.png</file>
+  <file>images/player.png</file>
   <startLoc x="120" y="240"/>
   <frames>4</frames>
   <frameInterval>200</frameInterval>
@@ -75,41 +75,10 @@
   <transparency>true</transparency>
 </pacman>
 
-<sillyman1>
-  <file>images/b1.png</file>
-  <startLoc x="0" y="300"/>
-  <speedX>275</speedX>
-  <speedY>0</speedY>
-  <transparency>true</transparency>
-</sillyman1>
-
-<sillyman2>
-  <file>images/b2.png</file>
-  <startLoc x="0" y="150"/>
-  <speedX>-300</speedX>
-  <speedY>0</speedY>
-  <transparency>true</transparency>
-</sillyman2>
-
-<sillyman3>
-  <file>images/b3.png</file>
-  <startLoc x="0" y="450"/>
-  <speedX>-250</speedX>
-  <speedY>0</speedY>
-  <transparency>true</transparency>
-</sillyman3>
-
-<greenorb>
-  <file>images/greenball.bmp</file>
-  <startLoc x="320" y="240"/>
-  <speedX>175</speedX>
-  <speedY>175</speedY>
-  <transparency>true</transparency>
-</greenorb>
 
 <bluepac1>
-  <file>images/a1.png</file>
-  <startLoc x="400" y="100"/>
+  <file>images/b.png</file>
+  <startLoc x="312" y="231"/>
   <frames>6</frames>
   <frameInterval>200</frameInterval>
   <speedX>100</speedX>
@@ -118,15 +87,105 @@
 </bluepac1>
 
 <bluepac2>
-  <file>images/a1.png</file>
+  <file>images/b.png</file>
+  <startLoc x="225" y="122"/>
+  <frames>6</frames>
+  <frameInterval>200</frameInterval>
+  <speedX>-261</speedX>
+  <speedY>-223</speedY>
+  <transparency>true</transparency>
+</bluepac2>
+
+<bluepac3>
+  <file>images/b.png</file>
+  <startLoc x="300" y="151"/>
+  <frames>6</frames>
+  <frameInterval>200</frameInterval>
+  <speedX>100</speedX>
+  <speedY>-200</speedY>
+  <transparency>true</transparency>
+</bluepac3>
+
+<bluepac4>
+  <file>images/b.png</file>
+  <startLoc x="420" y="30"/>
+  <frames>6</frames>
+  <frameInterval>200</frameInterval>
+  <speedX>280</speedX>
+  <speedY>-20</speedY>
+  <transparency>true</transparency>
+</bluepac4>
+
+
+<bluepac5>
+  <file>images/b.png</file>
+  <startLoc x="913" y="189"/>
+  <frames>6</frames>
+  <frameInterval>200</frameInterval>
+  <speedX>-105</speedX>
+  <speedY>-149</speedY>
+  <transparency>true</transparency>
+</bluepac5>
+
+<bluepac6>
+  <file>images/b.png</file>
+  <startLoc x="628" y="-131"/>
+  <frames>6</frames>
+  <frameInterval>200</frameInterval>
+  <speedX>-155</speedX>
+  <speedY>110</speedY>
+  <transparency>true</transparency>
+</bluepac6>
+
+<bluepac7>
+  <file>images/b.png</file>
+  <startLoc x="2952" y="444"/>
+  <frames>6</frames>
+  <frameInterval>200</frameInterval>
+  <speedX>123</speedX>
+  <speedY>-119</speedY>
+  <transparency>true</transparency>
+</bluepac7>
+
+<bluepac8>
+  <file>images/b.png</file>
+  <startLoc x="1619" y="515"/>
+  <frames>6</frames>
+  <frameInterval>200</frameInterval>
+  <speedX>21</speedX>
+  <speedY>-100</speedY>
+  <transparency>true</transparency>
+</bluepac8>
+
+<bluepac9>
+  <file>images/b.png</file>
+  <startLoc x="1440" y="322"/>
+  <frames>6</frames>
+  <frameInterval>200</frameInterval>
+  <speedX>-100</speedX>
+  <speedY>10</speedY>
+  <transparency>true</transparency>
+</bluepac9>
+
+<bluepac10>
+  <file>images/b.png</file>
+  <startLoc x="1900" y="195"/>
+  <frames>6</frames>
+  <frameInterval>200</frameInterval>
+  <speedX>11</speedX>
+  <speedY>20</speedY>
+  <transparency>true</transparency>
+</bluepac10>
+
+<bluepac11>
+  <file>images/b.png</file>
   <startLoc x="900" y="0"/>
   <frames>6</frames>
   <frameInterval>200</frameInterval>
   <speedX>100</speedX>
   <speedY>-200</speedY>
   <transparency>true</transparency>
-</bluepac2>
-
+</bluepac11>
 <coologo>
   <file>images/coologo.png</file>
   <startLoc x="250" y="250"/>

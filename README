@@ -2,23 +2,45 @@ Name:Chunpeng Shao
 Clemson Email Address:chunpes@clemson.edu
 Course number: 6160
 
-Project no:3
-Project due date: Oct.7
-
+Project no:4
+Project due date: Oct.28
+==================================================================
 Project description: 
-Polymorphism in Action
-Use vectors/polymorphisms and etc to finish all 8 tasks.
-
+//1. 
+Implement Painter Algorithm, that is, nearer moves quicker, and farer moves slower. Nearer looks bigger, and farer looks smaller.
+//2
+Added "player" element, which is a Pacman. Use ASDW keys to control the movement of the Pacman.
+//3
+Add HeadUpDisplay window that shows the real-time values of x-y position seconds and fps, as well as an guide that shows how to move the Pacman.
+===================================================================
 Extra Contribution:
-All sprites hand drawn.
-Three 2-way-multiframe sprite with detect by eithor X velocity or Y velocity.
-
+//1   All sprites hand drawn, again.
+//2   Solo work. All by myself.
++----------------------------------------------------------
+//3   Pacman has learned new skill: BLINK!
++     Press "b" to cast blink, 
++     which would teleport Pacman to the right by 250 unit.
++     Blink has a cooldown time of 3 seconds.
++----------------------------------------------------------
+//4 Optimized keybounce.
+    From SDL wiki, I know how SDL_GetKeyState() works. It works like a map, with key( keys of the keyboard ) and value ( true = pressed, false = not pressed.) 
+    That solved the problem which is if the player press two or more key at the same time, the event.type==keydown/keyup would cause some results that we don't like. 
+    That is, the code detect the keystate of keyboard first, and then detect if there's an event of Keydown/QUIT. That makes the movement control much more smooth.
+=====================================================================
 Problems with this project:
-parallex scrolling still not fully under control.
-
----------------------------------
-NOTE:
-1. All 3 backgrounds are moving in sight.
-2. Use "T" key to change between sprites would understand the animation more clear.
-3. 2 pacman-ghosts are 6-frame sprite.
-4. pacman is 4-frame sprite.
+//1     Blink skill not optimized, that, I didn't get enough time to finish this cool skill. It can only blink to the right. And the view changes suddenly. I'm going to complete this skill, which would finally blink to the direction that Pacman moves to. And going to add an timer with swaping icon? to show the cooldown state for Blink.(I already imagined like that. lel)
+//2     Haven't add "boss" element which is part of my final design for the game. 
+//3     As you can see, the hand-draw images are seemed not so good. 
+        Well I blame my painting telent.
+//4     Code not cleaned. Pretty much code that in comments are not deleted. 
+        And some classes has duplicated function. 
+=====================================================================
+Final Game Design idea.
+1. Player control Pacman.
+2. Boss shoot out ghosts to random directions and speeds.
+3. Boss would have a health bar showing real-time health point left.
+4. Leader Board and Restart function.
+5. Collisions with ghosts would cost player's health point.
+6. Pacman need to move( and blink) to avoid collisions with ghosts, and shoot some funny Grenade to destroy 'boss' to finish the game.
+7. The less time used to kill the boss, the better score.
+=====================================================================

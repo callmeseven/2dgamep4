@@ -8,14 +8,28 @@
 #include "manager.h"
 #include "aaline.h"
 #include "ioManager.h"
-
+#include <vector>
+#include <algorithm>
 unsigned int hud_on_time;
+
+class Comp
+{
+    public:
+        bool operator()(const Drawable* lhs, const Drawable* rhs)
+        {
+            return lhs->getzoom() < rhs->getzoom();
+        }
+};
 
 Manager::~Manager() { 
   // These deletions eliminate "definitely lost" and
   // "still reachable"s in Valgrind.
   for (unsigned i = 0; i < sprites.size(); ++i) {
     delete sprites[i];
+  }
+  for (unsigned p = 0; p < ghosts.size(); p++)
+  {
+      delete ghosts[p];
   }
 }
 
@@ -25,12 +39,12 @@ Manager::Manager() :
   clock( Clock::getInstance() ),
   screen( io.getScreen() ),
   world("back", Gamedata::getInstance().getXmlInt("back/factor") ),
-  //tree("tree",Gamedata::getInstance().getXmlInt("tree/factor")),
+  tree("tree",Gamedata::getInstance().getXmlInt("tree/factor")),
   mount("mount", Gamedata::getInstance().getXmlInt("mount/factor") ),
   viewport( Viewport::getInstance() ),
   sprites(),
   currentSprite(0),
-
+  ghosts(),
   makeVideo( false ),
   frameCount( 0 ),
   username(  Gamedata::getInstance().getXmlStr("username") ),
@@ -44,48 +58,72 @@ Manager::Manager() :
   SDL_WM_SetCaption(title.c_str(), NULL);
   atexit(SDL_Quit);
   sprites.push_back( new Player("pacman") );
-  //sprites.push_back( new MultiSprite("bluepac1") );
-  //sprites.push_back( new RotateSprite("coologo") );
-  //sprites.push_back( new MultiSprite("bluepac2") );
-  //sprites.push_back( new Sprite("sillyman1") );
-  //sprites.push_back( new Sprite("sillyman2") );
-  //sprites.push_back( new Sprite("sillyman3") );
-  //sprites.push_back( new Sprite("greenorb") );
+
+  for ( int a = 0; a<60; a++)
+  {
+  ghosts.push_back( new Sprite("bluepac1") );
+  /*ghosts.push_back( new Sprite("bluepac2") );
+  ghosts.push_back( new Sprite("bluepac3") );
+  ghosts.push_back( new Sprite("bluepac4") );
+  ghosts.push_back( new Sprite("bluepac5") );
+  ghosts.push_back( new Sprite("bluepac6") );
+  ghosts.push_back( new Sprite("bluepac7") );
+  ghosts.push_back( new Sprite("bluepac8") );
+  ghosts.push_back( new Sprite("bluepac9") );
+  ghosts.push_back( new Sprite("bluepac10") );
+  ghosts.push_back( new Sprite("bluepac11") );*/
+  }
+  //std::cout << ghosts.size() << std::endl; 
+/*
+  std::vector<Sprite*>::const_iterator ptr = ghosts.begin();
+  while ( ptr != ghosts.end() )
+  { ptr->getzoom( double(( rand()%20+10)/20 ) );
+    ++ptr;
+  }
+*/
+    for (int b = 0; b < 60; b++ )
+    {
+        //ghosts[b]->getzoom( ((rand()%20+10.0f)/30.0f) );
+        ghosts[b]->getzoom(pow(ghosts[b]->getAbsV(), 1.2)/700);
+        //std::cout << ghosts[b]->getzoom() << std::endl;
+    }
+    sort(ghosts.begin(), ghosts.end(), Comp());
   viewport.setObjectToTrack(sprites[0]);
 }
 
 void drawBackground(SDL_Surface* screen)
 {
-    SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format, 255,255,255));
+    SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format, 0,255,255));
     SDL_Rect dest = {0,0,0,0};
     SDL_BlitSurface(screen, NULL,screen, &dest);
 }
 
 void Manager::display_hud(SDL_Surface* screen, const Uint32 RED, int fps)
 {
-    SDL_Rect rect = {5,10,170,160};
-    SDL_FillRect(screen, &rect, SDL_MapRGB(screen->format, 255,255,255));
-    SDL_Rect dest = {5, 10, 170,160};
+    SDL_Rect rect = {5,10,170,200};
+    SDL_FillRect(screen, &rect, SDL_MapRGB(screen->format, 255,178,102));
+    SDL_Rect dest = {5, 10, 170,200};
     SDL_BlitSurface(screen, &rect ,screen,&dest);
             Sint16 y1 = 10;
             Sint16 x1 = 5, x2 = 175;
             // draw the top line
             Draw_AALine(screen, x1, y1, x2, y1, 2.0f, RED);
             
-            Draw_AALine(screen, x1, y1+160, x2, y1+160, 2.0f, RED);
+            Draw_AALine(screen, x1, y1+200, x2, y1+200, 2.0f, RED);
             
-            Draw_AALine(screen, x2, y1, x2, y1+160, 2.0f, RED);
+            Draw_AALine(screen, x2, y1, x2, y1+200, 2.0f, RED);
 
-            Draw_AALine(screen, x1, y1, x1, y1+160, 2.0f, RED);
+            Draw_AALine(screen, x1, y1, x1, y1+200, 2.0f, RED);
   io.printMessageValueAt("Seconds: ", clock.getSeconds(), 10, 20);
   io.printMessageValueAt("fps: ", fps, 10, 40);
   io.printMessageValueAt("X-pos:", int(sprites[0]->X()), 10, 60);
   io.printMessageValueAt("Y-pos:", int(sprites[0]->Y()), 10, 80);
- // io.printMessageAt("W: Move Up", 10, 80);
   io.printMessageAt("A: Move Left", 10, 100);
   io.printMessageAt("S: Move Down", 10, 120);
   io.printMessageAt("D: Move Right", 10, 140);
-  io.printMessageAt(title, 10, 450);
+  io.printMessageAt("W: Move Up", 10, 160);
+  io.printMessageAt("B: Blink 250u right", 10, 180);
+
 }
 
 
@@ -93,12 +131,20 @@ void Manager::display_hud(SDL_Surface* screen, const Uint32 RED, int fps)
 
 void Manager::draw() {
   world.draw();
+  for ( unsigned int c = 0; c<20; c++ )
+  { ghosts[c]->draw();}
   
-  mount.draw(-50,280);
-  //tree.draw(-50,0);
-  for (unsigned i = 0; i < sprites.size(); ++i) {
-    sprites[i]->draw();
+  //mount.draw(-50,280);
+  tree.draw(-50,200);
+  for ( unsigned int a=20; a < 40; ++a)
+  {
+      ghosts[a]->draw();
   }
+  sprites[0]->draw();
+  mount.draw(-50,280);
+  for (unsigned int d=40;d<60;d++)
+  {ghosts[d]->draw();}
+  io.printMessageAt(title, 10, 450);
   viewport.draw();
 
   //SDL_Flip(screen);
@@ -128,17 +174,23 @@ void Manager::update(int &fps) {
     lastSeconds = clock.getSeconds();
     //switchSprite();
   }
-
+  
+   mount.update();
   for (unsigned int i = 0; i < sprites.size(); ++i) {
     sprites[i]->update(ticks);
   }
+  for (unsigned int a =0; a < ghosts.size(); ++a)
+  {
+      ghosts[a]->update(ticks);
+  }
+
   if ( makeVideo && frameCount < frameMax ) {
     makeFrame();
   }
   world.update();
 
-   mount.update();
-  // tree.update();
+//   mount.update();
+  tree.update();
   viewport.update(); // always update viewport last
   fps = clock.getFps();
 }

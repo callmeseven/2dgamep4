@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include <iostream>
 #include <string>
+#include <cmath>
 #include "vector2f.h"
 #include "frame.h"
  
@@ -12,11 +13,12 @@
 class Drawable {
 public:
   Drawable(const std::string& n, const Vector2f& pos, const Vector2f& vel): 
-    name(n), position(pos), velocity(vel), direction(true) {}
+    name(n), position(pos), velocity(vel), direction(true) , zoom( (rand()%30+10)/20) {}  
+ // Drawable(const std::string& n, const Vector2f& pos, const Vector2f& vel, double& zoom):name(n), position(pos), velocity(vel), zoom_scale(zoom) 
+    //{ }
 
   Drawable(const Drawable& s) : 
-    name(s.name), position(s.position), velocity(s.velocity), direction(s.direction)
-    { }
+    name(s.name), position(s.position), velocity(s.velocity), direction(s.direction), zoom(s.zoom)   { }
 
   virtual ~Drawable() {}
 
@@ -41,6 +43,10 @@ public:
   bool direct() const { return direction; }
   void direct(bool n) { direction = n;}
 
+  double getzoom() const { return zoom; }
+  void getzoom( double n) { zoom = n;}
+  
+  double getAbsV() { return sqrt((velocity[0]*velocity[0])+(velocity[1])*velocity[1]); }
   const Vector2f& getVelocity() const   { return velocity; }
   void setVelocity(const Vector2f& vel) { velocity = vel;  }
   const Vector2f& getPosition() const   { return position; }
@@ -55,5 +61,6 @@ private:
   Vector2f position;
   Vector2f velocity;
   bool direction;
+  double zoom;
 };
 #endif

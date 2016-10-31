@@ -20,7 +20,7 @@ public:
   // Chunk::draw needs the next function if the chunk is not
   // on a separate surface:
   void draw(Sint16 sx, Sint16 sy, Sint16 dx, Sint16 dy) const;
-  void draw(Sint16 x, Sint16 y, double angle) const;
+  void draw(Sint16 x, Sint16 y, double zoom) const;
 
   Uint16 getWidth()  const { return surface->w; }
   Uint16 getHeight() const { return surface->h; }
